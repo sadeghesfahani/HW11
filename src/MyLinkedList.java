@@ -1,4 +1,4 @@
-public class MyLinkedList <T>{
+public class MyLinkedList<T> {
 
     private Node<T> head;
     private int size;
@@ -91,6 +91,21 @@ public class MyLinkedList <T>{
         }
         return -1;
     }
+
+    public Node<T> getNode(int index) {
+        if (index > size - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+        Node<T> current = head;
+        for (int i = 0; i <= index; i++) {
+            if (i == index) {
+                return current;
+            }
+            current = current.getNext();
+        }
+        return current;
+    }
+
     private static class Node<T> {
         private T value;
         private Node<T> next;
@@ -110,6 +125,14 @@ public class MyLinkedList <T>{
 
         public void setNext(Node<T> next) {
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "value=" + value +
+                    ", next=" + next +
+                    '}';
         }
     }
 }
